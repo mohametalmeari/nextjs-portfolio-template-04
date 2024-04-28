@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -9,6 +11,15 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    colors: {
+      ...colors,
+      custom: {
+        primary: "#39b54a",
+        secondary: "#686868",
+        dark: "#111111",
+        light: "#e6e6e6",
+      },
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -74,4 +85,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
