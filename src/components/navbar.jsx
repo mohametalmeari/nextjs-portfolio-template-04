@@ -31,10 +31,10 @@ export const Navbar = () => {
           Logo<span className="text-custom-primary">.</span>
         </Link>
         <button
-          className="flex items-center gap-2 bg-custom-dark px-2 py-1 group"
+          className="flex items-center gap-2 bg-custom-dark px-2 py-1 group fixed top-8 right-10"
           onClick={() => setIsOpen(true)}
         >
-          <p className="text-custom-primary uppercase text-xs font-semibold tracking-[0.2rem] group-hover:text-white duration-700">
+          <p className="text-custom-primary uppercase text-xs font-semibold tracking-[0.2rem] group-hover:text-white duration-700 hidden sm:block">
             menu
           </p>
           <MenuIcon width={30} height={30} />
