@@ -1,17 +1,46 @@
+"use client";
+
 import Image from "next/image";
 import { Navbar } from "./navbar";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import Lenis from "@studio-freight/lenis";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 export const HeroSection = () => {
+  const container = useRef();
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 500 * 2]);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }, []);
+
   return (
     <section
+      ref={container}
       className="text-white h-screen w-full bg-black/60 relative"
       id="home"
     >
-      <div className=" absolute inset-0 -z-50 ">
-        <Image src="/images/hero.jpg" fill alt="" />
-      </div>
+      <motion.div className="absolute inset-0 -top-[600px] -z-50" style={{ y }}>
+        <Image
+          src="/images/hero.jpg"
+          fill
+          alt=""
+          className="object-top object-cover"
+        />
+      </motion.div>
       <Navbar className={"z-10"} />
       <div className="flex flex-col items-center p-5">
         <h1 className="text-custom-secondary uppercase font-bold tracking-[0.1rem] mb-3">
