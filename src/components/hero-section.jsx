@@ -1,3 +1,9 @@
+import { Navbar } from "./navbar";
+
 export const HeroSection = () => {
-  return <section>Hero Section</section>;
+  return (
+    <section className="text-white h-screen w-full">
+      <Navbar />
+    </section>
+  );
 };
