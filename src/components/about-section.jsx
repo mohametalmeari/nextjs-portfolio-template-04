@@ -22,7 +22,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="bg-custom-primary w-full flex flex-col items-center pt-28 pb-32 px-5"
+      className="bg-custom-primary w-full flex flex-col items-center pt-28 pb-32 px-5 relative"
     >
       <h2 className="uppercase font-semibold tracking-[0.1rem]">Hello there</h2>
       <h3 className="text-white text-4xl font-semibold pb-5 mb-10 border-b-2 border-b-white/25">
@@ -50,6 +50,8 @@ export const AboutSection = () => {
           </div>
         ))}
       </div>
+
+      <div className="h-16 w-[2px] bg-white absolute top-0 right-10" />
     </section>
   );
 };
