@@ -66,6 +66,7 @@ export const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className="block py-2 text-white text-lg font-semibold bg-yellow-400d"
+                onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </Link>
@@ -92,7 +93,12 @@ export const Navbar = () => {
   );
 };
 
-const IconLink = ({ icon: Icon, href }) => {
+export const IconLink = ({
+  icon: Icon,
+  href,
+  color = "rgb(255 255 255 / 0.25)",
+  hoverColor = "rgb(255 255 255)",
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const iconProps = {
     width: 20,
@@ -105,7 +111,7 @@ const IconLink = ({ icon: Icon, href }) => {
       <Icon
         {...iconProps}
         className="duration-300 cursor-pointer"
-        fill={isHovered ? "rgb(255 255 255)" : "rgb(255 255 255 / 0.25)"}
+        fill={isHovered ? hoverColor : color}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       />
