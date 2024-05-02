@@ -96,6 +96,7 @@ export const Navbar = () => {
 export const IconLink = ({
   icon: Icon,
   href,
+  className,
   color = "rgb(255 255 255 / 0.25)",
   hoverColor = "rgb(255 255 255)",
 }) => {
@@ -107,7 +108,7 @@ export const IconLink = ({
   };
 
   return (
-    <Link href={href} target="_blank">
+    <Link href={href} target="_blank" className={className}>
       <Icon
         {...iconProps}
         className="duration-300 cursor-pointer"

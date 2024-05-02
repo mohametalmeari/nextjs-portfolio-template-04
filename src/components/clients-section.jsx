@@ -59,7 +59,21 @@ const REVIEW_DATA = [
 ];
 
 export const ClientsSection = () => {
+  const [inView, setInView] = useState(2);
   const router = useRouter();
+
+  useEffect(() => {
+    setInView(Math.floor(window.innerWidth / 200));
+    window.addEventListener("resize", () => {
+      setInView(Math.floor(window.innerWidth / 200));
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setInView(Math.floor(window.innerWidth / 200));
+      });
+    };
+  }, [typeof window]);
 
   const corps = CORPS_DATA.map((corp, index) => (
     <Image
@@ -75,7 +89,7 @@ export const ClientsSection = () => {
 
   const reviews = REVIEW_DATA.map((review, index) => (
     <div key={index} className="flex flex-col items-center">
-      <p className="mx-10 mb-10 font-serif text-custom-secondary/80 leading-8 text-lg">
+      <p className="mx-10 mb-10 font-serif text-custom-secondary/80 leading-8 text-lg xs:text-xl xs:leading-[1.5] sm:text-2xl sm:leading-[1.75] lg:text-3xl lg:leading-[2]">
         {review.content}
       </p>
       <Image
@@ -93,21 +107,21 @@ export const ClientsSection = () => {
   return (
     <section
       id="clients"
-      className="pt-28 pb-32 flex flex-col items-center text-center px-5 bg-custom-secondary/20 relative"
+      className="pt-28 pb-32 flex flex-col items-center text-center px-5 bg-custom-secondary/20 relative w-full"
     >
       <div className="flex flex-col items-center">
-        <h2 className="uppercase text-custom-primary font-semibold text-sm">
+        <h2 className="uppercase text-custom-primary font-bold text-sm sm:text-lg">
           My clients
         </h2>
-        <p className="text-[1.8rem] font-semibold">
+        <p className="text-[1.8rem] font-semibold xs:text-[2rem] sm:text-[2.5rem] lg:text-[3.5rem] max-w-[58rem]">
           I has been honored to partner up with these clients
         </p>
       </div>
-      <div className="flex flex-col w-full items-center gap-20 mt-20">
-        <Swiper data={corps} step={2} inView={2} />
+      <div className="flex flex-col w-full items-center gap-20 mt-20 max-w-[72rem]">
+        <Swiper data={corps} step={inView} inView={inView} />
         <div className="bg-custom-secondary/25 w-[70%] h-[1px]" />
       </div>
-      <div className="flex flex-col w-full items-center gap-10 mt-20">
+      <div className="flex flex-col w-full items-center gap-10 mt-20 max-w-[58rem]">
         <Swiper data={reviews} step={1} inView={1} />
       </div>
       <div className="absolute h-16 w-[2px] bg-custom-primary bottom-0" />

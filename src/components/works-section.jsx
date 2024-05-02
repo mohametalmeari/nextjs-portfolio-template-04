@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { LinkIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,19 +14,31 @@ const PROJECTS = [
     link: "#",
   },
   {
-    title: "Project 1",
+    title: "Project 2",
     category: "Web Development",
     image: "/images/project-1.jpg",
     link: "#",
   },
   {
-    title: "Project 1",
+    title: "Project 3",
     category: "Web Development",
     image: "/images/project-1.jpg",
     link: "#",
   },
   {
-    title: "Project 1",
+    title: "Project 4",
+    category: "Web Development",
+    image: "/images/project-1.jpg",
+    link: "#",
+  },
+  {
+    title: "Project 5",
+    category: "Web Development",
+    image: "/images/project-1.jpg",
+    link: "#",
+  },
+  {
+    title: "Project 6",
     category: "Web Development",
     image: "/images/project-1.jpg",
     link: "#",
@@ -34,20 +47,21 @@ const PROJECTS = [
 
 export const WorksSection = () => {
   return (
-    <section className="w-full text-white pt-28 pb-32 relative px-5">
+    <section id="works" className="w-full text-white pt-28 pb-32 relative px-5">
       <div className="bg-custom-dark absolute top-0 left-0 right-0 h-[33rem] -z-10" />
       <div className="flex flex-col">
         <div className="flex flex-col items-center">
-          <h2 className="uppercase text-custom-primary font-semibold text-sm">
+          <h2 className="uppercase text-custom-primary font-semibold text-sm xs:text-[1rem] xs:mb-1 md:mb-3">
             Recent works
           </h2>
-          <p className="text-[1.8rem] font-semibold mb-5 text-white text-center">
+          <p className="text-[1.8rem] font-semibold mb-5 text-white text-center xs:text-4xl max-w-[700px] sm:text-[2.5rem] sm:leading-[1.25] md:text-[2.5rem] lg:text-5xl">
             I love what I do, check out some of my latest works
           </p>
+          <div className="bg-custom-secondary/25 w-[70%] h-[1px]" />
         </div>
-        <div>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 max-w-[70rem] mx-auto auto-rows-fr">
           {PROJECTS.map((project, index) => (
-            <WorkCard key={index} {...project} />
+            <WorkCard key={index} index={index} {...project} />
           ))}
         </div>
       </div>
@@ -55,12 +69,17 @@ export const WorksSection = () => {
   );
 };
 
-const WorkCard = ({ title, category, image, link }) => {
+const WorkCard = ({ title, category, image, link, index }) => {
   const router = useRouter();
+
   return (
     <div
       onClick={() => router.push(link)}
-      className="h-[33rem] w-full relative group cursor-pointer overflow-hidden"
+      className={cn(
+        "aspect-square w-full relative group cursor-pointer overflow-hidden row-span-4",
+        (index === 1 || index === PROJECTS.length - 2) &&
+          "row-span-5 aspect-auto"
+      )}
     >
       <Image
         src={image}
