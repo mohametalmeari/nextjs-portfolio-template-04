@@ -8,11 +8,10 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import { IconLink } from "./navbar";
-import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 export const ContactSection = () => {
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +33,17 @@ export const ContactSection = () => {
     const res = await fetch(url, options);
 
     if (res.status === 200) {
-      setSent(true);
+      toast({
+        title: "Message sent successfully",
+        description: "I will get back to you soon.",
+      });
+      e.target.reset();
     } else {
-      setError(true);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
     }
   };
 
