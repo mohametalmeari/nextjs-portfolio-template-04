@@ -11,8 +11,7 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
+import { useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 
 export const HeroSection = () => {
@@ -24,15 +23,6 @@ export const HeroSection = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 500 * 2]);
-
-  useEffect(() => {
-    const lenis = new Lenis();
-    const raf = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
-  }, []);
 
   return (
     <section
